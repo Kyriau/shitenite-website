@@ -1,0 +1,42 @@
+:root {
+	--color-dark-blue: #003154;
+	--color-light-blue: #1064A1;
+	--color-red: #F00000;
+	--color-dark-red: #660000;
+	--color-yellow: #FFC819;
+	--color-off-white: #FFFFF0;
+	--color-off-black: #1B1B1B;
+}
+
+body {
+	
+	background-color: var(--color-dark-blue);
+	color: var(--color-off-white);
+	font-family: "Comic Sans MS", Verdana, sans-serif;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	
+}
+
+div.center-container {
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	
+	border: 0.15rem solid var(--color-off-black);
+	border-radius: 0.6rem;
+	
+	background-color: var(--color-light-blue);
+	
+	margin: 0.2rem;
+	padding: 0.2rem;
+	
+	width: 20rem;
+	
+}
