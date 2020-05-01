@@ -31,7 +31,7 @@
 			$regError = "Invalid username length";
 			return false;
 		}
-		if(preg_match("/^[0-9a-zA-Z]+$/", $username) == 1) {
+		if(preg_match("/^([0-9a-zA-Z]+)$/", $username) != 1) {
 			$regError = "Username contains invalid character";
 			return false;
 		}
