@@ -1,6 +1,6 @@
 <?php
 
-	session_start();
+	include "site-init.php";
 	
 	if(isset($_SESSION['userid'])) {
 		header("Location: main.php");
@@ -88,9 +88,7 @@
 	</head>
 	<body>
 		<div class="header">
-			<h3></h3>
-			<h1>Shite Nite</h1>
-			<h3>Hello</h3>
+			<h1>Shite Nite Voting</h1>
 		</div>
 		<div class="main-content">
 			<div class="center-container">
