@@ -1,44 +1,40 @@
-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-h2, h3, input, button, a.button {
+h1 {
+	
 	flex: 0 1 auto;
 	margin: 0.2rem;
 	text-align: center;
-}
-
-h2 {
+	
 	font-size: 2rem;
 	color: var(--color-yellow);
 	text-shadow: 0.2rem 0.2rem var(--color-off-black);
 	width: 20rem;
+	
 }
 
-input, button, a.button {
+button {
+	
+	flex: 0 1 auto;
+	margin: 0.2rem;
+	text-align: center;
+	
 	color: var(--color-off-black);
 	border: 0.15rem solid var(--color-off-black);
 	border-radius: 0.6rem;
-}
-
-input {
-	background-color: var(--color-off-white);
-	width: 16rem;
-}
-
-button, a.anchor-button {
+	
 	background-color: var(--color-yellow);
 	padding: 0 0.2rem 0 0.2rem;
 	cursor: pointer;
+	
 }
 
-:invalid {
-	box-shadow: none;
+button.has-vote {
+	
+	background-color: var(--color-dark-red);
+	color: var(--color-off-white);
+	
 }
 
-.error {
-	color: var(--color-red);
+img {
+	border: 0.15rem solid var(--color-off-black);
+	border-radius: 0.6rem;
 }

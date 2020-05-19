@@ -42,6 +42,13 @@
 		$dbname = 'votingsite';
 		$db = new mysqli('localhost', $dbuser, $dbpass, $dbname);
 		
+		// Check connection
+		if($db->connect_errno) {
+			$errno = $db->connect_errno;
+			$regError = "Database connection error: $errno";
+			return false;
+		}
+		
 		// Prepare statements
 		$userSelect = $db->prepare("SELECT id FROM SiteUser WHERE username = ? LIMIT 1;");
 		$regkeySelect = $db->prepare("SELECT used FROM RegistrationKey WHERE regKey = ? LIMIT 1;");
@@ -94,6 +101,7 @@
 <html lang=en>
 	<head>
 		<title>Shite Nite</title>
+		<link rel="icon" href="img/favicon.png">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/login.css">

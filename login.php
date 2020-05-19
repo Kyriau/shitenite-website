@@ -82,31 +82,38 @@
 <html lang=en>
 	<head>
 		<title>Shite Nite</title>
+		<link rel="icon" href="img/favicon.png">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/login.css">
 	</head>
 	<body>
-		<div class="center-container">
-			<h1>Shite Nite Voting</h1>
-			<form action="login.php" method="POST">
-				<input type="text" name="username" placeholder="Username" required>
-				<input type="password" name="password" placeholder="Password" required>
-				<button type="submit">Login</button>
-			</form>
-			<a href="register.php" class="button">I would like to register</a>
+		<div class="header">
+			<h3></h3>
+			<h1>Shite Nite</h1>
+			<h3>Hello</h3>
 		</div>
-		<?php
-			if(isset($regSuccess)) {
-				echo "<div class=\"center-container\">";
-				echo "<h2>Registration successful</h2>";
-				echo "</div>";
-			}
-			if(isset($loginError)) {
-				echo "<div class=\"center-container\">";
-				echo "<h2 class=\"error\">$loginError</h2>";
-				echo "</div>";
-			}
-		?>
+		<div class="main-content">
+			<div class="center-container">
+				<h2>Login</h2>
+				<form action="login.php" method="POST">
+					<input type="text" name="username" placeholder="Username" required>
+					<input type="password" name="password" placeholder="Password" required>
+					<button type="submit">Login</button>
+				</form>
+				<a href="register.php" class="anchor-button">I would like to register</a>
+			</div>
+			<?php
+				if(isset($regSuccess)) {
+					echo "<div class=\"center-container\">";
+					echo "<h2>Registration successful</h2>";
+					echo "</div>";
+				}
+				if(isset($loginError)) {
+					echo "<div class=\"center-container\">";
+					echo "<h2 class=\"error\">$loginError</h2>";
+					echo "</div>";
+				}
+			?>
+		</div>
 	</body>
 </html>

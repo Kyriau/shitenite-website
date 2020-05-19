@@ -13,6 +13,7 @@
 <html lang=en>
 	<head>
 		<title>Shite Nite</title>
+		<link rel="icon" href="img/favicon.png">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/login.css">
