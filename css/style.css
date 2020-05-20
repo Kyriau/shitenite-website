@@ -1,4 +1,5 @@
 :root {
+	
 	--color-dark-blue: #003154;
 	--color-light-blue: #1064A1;
 	--color-red: #F00000;
@@ -6,6 +7,7 @@
 	--color-yellow: #FFC819;
 	--color-off-white: #FFFFF0;
 	--color-off-black: #1B1B1B;
+	
 }
 
 body {
@@ -14,37 +16,40 @@ body {
 	flex-direction: column;
 	justify-content: center safe;
 	align-items: center;
-	min-height: 100vh;
 	
 	background-color: var(--color-dark-blue);
 	font-family: "Comic Sans MS", Verdana, sans-serif;
 	
 }
 
-div.site-header {
+div.main-content {
 	
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+	
+	width: 42.2rem;
+	
+}
+
+div.center-container-wide {
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	
 	border: 0.15rem solid var(--color-off-black);
 	border-radius: 0.6rem;
 	
-	width: 40rem;
+	background-color: var(--color-light-blue);
+	
 	margin: 0.2rem;
 	padding: 0.2rem;
 	
-	background-color: var(--color-light-blue);
-	
-}
-
-div.main-content {
-	
-	display: flex;
-	flex-direction: column;
-	justify-content: center safe;
-	align-items: center;
+	width: 41.1rem;
 	
 }
 
@@ -69,7 +74,6 @@ div.center-container {
 
 h1 {
 	
-	flex: 0 1 auto;
 	margin: 0.2rem;
 	text-align: center;
 	
@@ -81,7 +85,6 @@ h1 {
 
 h2 {
 	
-	flex: 0 1 auto;
 	margin: 0.2rem;
 	text-align: center;
 	
@@ -93,11 +96,12 @@ h2 {
 
 h3 {
 	
-	flex: 0 1 auto;
 	margin: 0.2rem;
 	text-align: center;
 	
+	font-size: 1rem;
 	color: var(--color-off-white);
+	text-shadow: 0.1rem 0.1rem var(--color-off-black);
 	
 }
 
@@ -112,7 +116,6 @@ form {
 
 input {
 	
-	flex: 0 1 auto;
 	margin: 0.2rem;
 	text-align: center;
 	
@@ -148,8 +151,14 @@ button.has-vote {
 }
 
 img.movie-poster {
+	
 	border: 0.15rem solid var(--color-off-black);
 	border-radius: 0.6rem;
+	
+}
+
+a:visited {
+	color: inherit;
 }
 
 :invalid {

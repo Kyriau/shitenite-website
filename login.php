@@ -76,8 +76,8 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
-		<?php include "site-header.php"; ?>
 		<div class="main-content">
+			<?php include "site-header.php"; ?>
 			<div class="center-container">
 				<h2>Login</h2>
 				<form action="login.php" method="POST">

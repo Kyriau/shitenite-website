@@ -1,6 +1,6 @@
 <?php
 	
-	echo "<div class=\"site-header\">";
+	echo "<div class=\"center-container-wide\">";
 	echo "<h1>Shite Nite Voting</h1>";
 	
 	if(isset($_SESSION['userID'])) {
