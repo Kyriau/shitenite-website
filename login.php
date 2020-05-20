@@ -2,7 +2,8 @@
 
 	include "site-init.php";
 	
-	if(isset($_SESSION['userid'])) {
+	// If we have an active session, skip to main page
+	if(isset($_SESSION['userID'])) {
 		header("Location: main.php");
 		die();
 	}
@@ -17,14 +18,14 @@
 	
 	if(isset($_POST['password']) && isset($_POST['username'])) {
 		
-		if(login_user()) {
+		if(loginUser()) {
 			header("Location: main.php");
 			die();
 		}
 		
 	}
 	
-	function login_user() {
+	function loginUser() {
 		
 		global $loginError;
 		
@@ -42,36 +43,24 @@
 			return false;
 		}
 		
-		// Setup database connection
-		$dbuser = 'root';
-		$dbpass = '';
-		$dbname = 'votingsite';
-		$db = new mysqli('localhost', $dbuser, $dbpass, $dbname);
-		
-		// Query database
-		$userSelect = $db->prepare("SELECT * FROM SiteUser WHERE username = ? LIMIT 1;");
-		$userSelect->bind_param("s", $username);
-		$userSelect->execute();
-		$userResult = $userSelect->get_result();
+		$siteUser = querySiteUserByUsername($username);
 		
 		// Check that user was found
-		if($userResult->num_rows == 0) {
+		if($siteUser === false) {
 			$loginError = "Authentication failed";
-			$db->close();
 			return false;
 		}
 		
 		// Check that password matches
-		$siteuser = $userResult->fetch_object();
-		if(!password_verify($password, $siteuser->password)) {
+		if(!password_verify($password, $siteUser->password)) {
 			$loginError = "Authentication failed";
-			$db->close();
 			return false;
 		}
 		
-		$_SESSION['userid'] = $siteuser->id;
+		// Setup session
+		$_SESSION['userID'] = $siteUser->id;
+		$_SESSION['username'] = $_POST['username'];
 		
-		$db->close();
 		return true;
 		
 	}
@@ -87,9 +76,7 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
-		<div class="header">
-			<h1>Shite Nite Voting</h1>
-		</div>
+		<?php include "site-header.php"; ?>
 		<div class="main-content">
 			<div class="center-container">
 				<h2>Login</h2>
@@ -103,12 +90,12 @@
 			<?php
 				if(isset($regSuccess)) {
 					echo "<div class=\"center-container\">";
-					echo "<h2>Registration successful</h2>";
+					echo "<h3>Registration successful</h3>";
 					echo "</div>";
 				}
 				if(isset($loginError)) {
 					echo "<div class=\"center-container\">";
-					echo "<h2 class=\"error\">$loginError</h2>";
+					echo "<h3 class=\"error\">$loginError</h3>";
 					echo "</div>";
 				}
 			?>

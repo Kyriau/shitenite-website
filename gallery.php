@@ -1,3 +1,9 @@
+<?php
+	
+	include "site-init.php";
+	
+?>
+
 <!DOCTYPE html>
 <html lang=en>
 	<head>
@@ -6,7 +12,6 @@
 		<link rel="icon" href="img/favicon.png">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/voting.css">
 	
 		<script>
 		
@@ -44,23 +49,23 @@
 	</head>
 	<body>
 		<div class="center-container">
-			<h1>The Room</h1>
+			<h2>The Room</h2>
 			<div class="movie-info">
-				<img src="img/theroom.jpg">
+				<img src="img/theroom.jpg" class="movie-poster">
 			</div>
 			<button id="vote-button-1" onclick="vote(1)">Use Vote</button>
 		</div>
 		<div class="center-container">
-			<h1>The Great Wall</h1>
+			<h2>The Great Wall</h2>
 			<div class="movie-info">
-				<img src="img/thegreatwall.jpg">
+				<img src="img/thegreatwall.jpg" class="movie-poster">
 			</div>
 			<button id="vote-button-2" onclick="vote(2)">Use Vote</button>
 		</div>
 		<div class="center-container">
-			<h1>Starship Troopers</h1>
+			<h2>Starship Troopers</h2>
 			<div class="movie-info">
-				<img src="img/starshiptroopers.jpg">
+				<img src="img/starshiptroopers.jpg" class="movie-poster">
 			</div>
 			<button id="vote-button-3" onclick="vote(3)">Use Vote</button>
 		</div>

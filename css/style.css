@@ -21,11 +21,12 @@ body {
 	
 }
 
-div.header {
+div.site-header {
 	
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	
 	border: 0.15rem solid var(--color-off-black);
 	border-radius: 0.6rem;
@@ -126,7 +127,6 @@ input {
 
 button, a.anchor-button {
 	
-	flex: 0 1 auto;
 	margin: 0.2rem;
 	text-align: center;
 	
@@ -138,6 +138,18 @@ button, a.anchor-button {
 	padding: 0 0.2rem 0 0.2rem;
 	cursor: pointer;
 	
+}
+
+button.has-vote {
+	
+	background-color: var(--color-dark-red);
+	color: var(--color-off-white);
+	
+}
+
+img.movie-poster {
+	border: 0.15rem solid var(--color-off-black);
+	border-radius: 0.6rem;
 }
 
 :invalid {

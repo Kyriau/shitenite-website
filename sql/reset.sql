@@ -1,7 +1,9 @@
 USE votingsite;
 
+DROP TABLE IF EXISTS Attendee;
 DROP TABLE IF EXISTS MovieNight;
 DROP TABLE IF EXISTS Vote;
+DROP TABLE IF EXISTS VoteOption;
 DROP TABLE IF EXISTS VoteRound;
 DROP TABLE IF EXISTS Movie;
 DROP TABLE IF EXISTS RegistrationKey;
@@ -26,16 +28,17 @@ CREATE TABLE RegistrationKey (
 	
 );
 
-CREATE TABLE Movie (
+CREATE TABLE Movie (j
 	
 	id INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(255) NOT NULL,
+	name VARCHAR(64) NOT NULL,
 	imgSrc VARCHAR(255) NOT NULL,
-	nominator INT NOT NULL,
+	imdbHref VARCHAR(255) NOT NULL,
+	nominatorID INT NOT NULL,
 	
 	PRIMARY KEY (id),
 	
-	FOREIGN KEY (nominator) REFERENCES SiteUser
+	FOREIGN KEY (nominatorID) REFERENCES SiteUser(id)
 	
 );
 
@@ -46,7 +49,7 @@ CREATE TABLE VoteRound (
 	
 	PRIMARY KEY (id),
 	
-	FOREIGN KEY (movieNightID) REFERENCES MovieNight
+	FOREIGN KEY (movieNightID) REFERENCES MovieNight(id)
 	
 );
 
@@ -54,24 +57,26 @@ CREATE TABLE VoteOption (
 	
 	id INT NOT NULL,
 	movieID INT NOT NULL,
+	voteRoundID INT NOT NULL,
 	
 	PRIMARY KEY (id),
 	
-	FOREIGN KEY (movieID) REFERENCES Movie
+	FOREIGN KEY (movieID) REFERENCES Movie(id),
+	FOREIGN KEY (voteRoundID) REFERENCES VoteRound(id)
 	
 )
 
 CREATE TABLE Vote (
 
-	siteUserID INT NOT NULL
+	siteUserID INT NOT NULL,
 	voteOptionID INT NOT NULL,
 	voteRoundID INT NOT NULL,
 	
 	PRIMARY KEY (siteUserID, movieID, voteRoundID),
 	
-	FOREIGN KEY (siteUserID) REFERENCES SiteUser,
-	FOREIGN KEY (movieID) REFERENCES Movie,
-	FOREIGN KEY (voteRoundID) REFERENCES VoteRound
+	FOREIGN KEY (siteUserID) REFERENCES SiteUser(id),
+	FOREIGN KEY (movieID) REFERENCES Movie(id),
+	FOREIGN KEY (voteRoundID) REFERENCES VoteRound(id)
 
 );
 
@@ -79,8 +84,23 @@ CREATE TABLE MovieNight (
 	
 	id INT NOT NULL AUTO_INCREMENT,
 	night DATE NOT NULL,
+	winnerID INT,
 	
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	
+	FOREIGN KEY (winnerID) REFERENCES Movie(id)
+	
+);
+
+CREATE TABLE Attendee (
+	
+	siteUserID INT NOT NULL,
+	movieNightID INT NOT NULL,
+	
+	PRIMARY KEY (siteUserID, movieNightID),
+	
+	FOREIGN KEY (siteUserID) REFERENCES SiteUser(id),
+	FOREIGN KEY (movieNightID) REFERENCES MovieNight(id)
 	
 );
 
