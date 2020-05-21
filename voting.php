@@ -2,6 +2,46 @@
 	
 	include "site-init.php";
 	
+	$movies = queryAllMovies();
+	$votes = ceil(count($movies) / 3);
+	
+	function echoMovieInfo($movie) {
+		
+		$name = $movie['name'];
+		$imgSrc = $movie['imgSrc'];
+		$imdbHref = $movie['imdbHref'];
+		$description = $movie['description'];
+		
+		echo "<a href=\"$imdbHref\" target=\"_blank\">";
+		echo "<h2>$name</h2>";
+		echo "</a>";
+		echo "<a href=\"$imdbHref\" target=\"_blank\">";
+		echo "<img src=\"$imgSrc\" class=\"movie-poster\">";
+		echo "</a>";
+		echo "<h3>$description</h3>";
+		
+	}
+	
+	function echoVoteButton($movie) {
+		
+		$id = $movie['id'];
+		echo "<button id=\"vote-button-$id\" onclick=\"vote($id)\">Use Vote</button>";
+		
+	}
+	
+	function echoAllMovies() {
+		
+		global $movies;
+		
+		foreach($movies as $movie) {
+			echo "<div class=\"center-container\">";
+			echoMovieInfo($movie);
+			echoVoteButton($movie);
+			echo "</div>";
+		}
+		
+	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +93,7 @@
 			<div class="center-container-wide">
 				<h3>For this round of voting, you have 2 votes.</h3>
 			</div>
+			<!--
 			<div class="center-container">
 				<h2>The Room</h2>
 				<div class="movie-info">
@@ -77,6 +118,8 @@
 				</div>
 				<button id="vote-button-3" onclick="vote(3)">Use Vote</button>
 			</div>
+			-->
+			<?php echoAllMovies(); ?>
 			<form method="POST" action="applyvotes.php" class="hidden">
 				<input type="hidden" id="vote-1" value="0">
 				<input type="hidden" id="vote-2" value="0">

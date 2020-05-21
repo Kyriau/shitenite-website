@@ -35,7 +35,6 @@ CREATE TABLE Movie (
 	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255) NOT NULL,
 	imgSrc VARCHAR(255) NOT NULL,
-	imdbHref VARCHAR(255) NOT NULL,
 	description VARCHAR(255) NOT NULL,
 	
 	PRIMARY KEY (id)
@@ -93,11 +92,13 @@ CREATE TABLE VoteOption (
 	id INT NOT NULL,
 	movieID INT NOT NULL,
 	voteRoundID INT NOT NULL,
+	movieNightID INT NOT NULL,
 	
 	PRIMARY KEY (id),
 	
 	FOREIGN KEY (movieID) REFERENCES Movie(id),
-	FOREIGN KEY (voteRoundID) REFERENCES VoteRound(id)
+	FOREIGN KEY (voteRoundID) REFERENCES VoteRound(id),
+	FOREIGN KEY (movieNightID) REFERENCES MovieNight(id)
 	
 );
 
@@ -106,12 +107,14 @@ CREATE TABLE Vote (
 	siteUserID INT NOT NULL,
 	voteOptionID INT NOT NULL,
 	voteRoundID INT NOT NULL,
+	movieNightID INT NOT NULL,
 	
-	PRIMARY KEY (siteUserID, voteOptionID, voteRoundID),
+	PRIMARY KEY (siteUserID, voteOptionID),
 	
 	FOREIGN KEY (siteUserID) REFERENCES SiteUser(id),
 	FOREIGN KEY (voteOptionID) REFERENCES VoteOption(id),
-	FOREIGN KEY (voteRoundID) REFERENCES VoteRound(id)
+	FOREIGN KEY (voteRoundID) REFERENCES VoteRound(id),
+	FOREIGN KEY (movieNightID) REFERENCES MovieNight(id)
 
 );
 

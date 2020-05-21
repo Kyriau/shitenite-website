@@ -78,7 +78,7 @@
 	<body>
 		<div class="main-content">
 			<?php include "site-header.php"; ?>
-			<div class="center-container">
+			<div class="center-container-wide">
 				<h2>Login</h2>
 				<form action="login.php" method="POST">
 					<input type="text" name="username" placeholder="Username" required>
@@ -89,12 +89,12 @@
 			</div>
 			<?php
 				if(isset($regSuccess)) {
-					echo "<div class=\"center-container\">";
+					echo "<div class=\"center-container-wide\">";
 					echo "<h3>Registration successful</h3>";
 					echo "</div>";
 				}
 				if(isset($loginError)) {
-					echo "<div class=\"center-container\">";
+					echo "<div class=\"center-container-wide\">";
 					echo "<h3 class=\"error\">$loginError</h3>";
 					echo "</div>";
 				}
