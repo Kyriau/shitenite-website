@@ -83,7 +83,7 @@
 		$conn = new mysqli('localhost', $dbUser, $dbPass, $dbName);
 		
 		// Query database
-		$movieSelect = $conn->prepare("SELECT Movie.* FROM Movie JOIN VoteOption ON Movie.id = VoteOption.movieID WHERE voteRoundID = ?");
+		$movieSelect = $conn->prepare("SELECT Movie.* FROM Movie JOIN VoteOption ON Movie.id = VoteOption.movieID WHERE voteRoundID = ? ORDER BY Movie.name");
 		$movieSelect->bind_param("s", $voteRoundID);
 		$movieSelect->execute();
 		$movieResult = $movieSelect->get_result();
@@ -91,7 +91,7 @@
 		// Close connection
 		$conn->close();
 		
-		//return $userResult->fetch_object();
+		return $movieResult->fetch_all(MYSQLI_ASSOC);
 		
 	}
 	
