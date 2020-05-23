@@ -1,8 +1,9 @@
 <?php
 
-	session_start();
+	include "site-init.php";
 	
-	if(isset($_SESSION['userid'])) {
+	// If we have an active session, skip to main page
+	if(isset($_SESSION['userID'])) {
 		header("Location: main.php");
 		die();
 	}
@@ -17,14 +18,14 @@
 	
 	if(isset($_POST['password']) && isset($_POST['username'])) {
 		
-		if(login_user()) {
+		if(loginUser()) {
 			header("Location: main.php");
 			die();
 		}
 		
 	}
 	
-	function login_user() {
+	function loginUser() {
 		
 		global $loginError;
 		
@@ -37,41 +38,29 @@
 			$loginError = "Invalid username length";
 			return false;
 		}
-		if(preg_match("^[0-9a-zA-Z]+$", $username) == 1) {
+		if(preg_match("/^([0-9a-zA-Z]+)$/", $username) != 1) {
 			$loginError = "Username contains invalid character";
 			return false;
 		}
 		
-		// Setup database connection
-		$dbuser = 'root';
-		$dbpass = '';
-		$dbname = 'votingsite';
-		$db = new mysqli('localhost', $dbuser, $dbpass, $dbname);
-		
-		// Query database
-		$userSelect = $db->prepare("SELECT * FROM SiteUser WHERE username = ? LIMIT 1;");
-		$userSelect->bind_param("s", $username);
-		$userSelect->execute();
-		$userResult = $userSelect->get_result();
+		$siteUser = querySiteUserByUsername($username);
 		
 		// Check that user was found
-		if($userResult->num_rows == 0) {
+		if($siteUser === false) {
 			$loginError = "Authentication failed";
-			$db->close();
 			return false;
 		}
 		
 		// Check that password matches
-		$siteuser = $userResult->fetch_object();
-		if(!password_verify($password, $siteuser->password)) {
+		if(!password_verify($password, $siteUser->password)) {
 			$loginError = "Authentication failed";
-			$db->close();
 			return false;
 		}
 		
-		$_SESSION['userid'] = $siteuser->id;
+		// Setup session
+		$_SESSION['userID'] = $siteUser->id;
+		$_SESSION['username'] = $_POST['username'];
 		
-		$db->close();
 		return true;
 		
 	}
@@ -82,31 +71,34 @@
 <html lang=en>
 	<head>
 		<title>Shite Nite</title>
+		<link rel="icon" href="img/favicon.png">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/login.css">
 	</head>
 	<body>
-		<div class="center-container">
-			<h1>Shite Nite Voting</h1>
-			<form action="login.php" method="POST">
-				<input type="text" name="username" placeholder="Username" required>
-				<input type="password" name="password" placeholder="Password" required>
-				<button type="submit">Login</button>
-			</form>
-			<a href="register.php" class="button">I would like to register</a>
+		<div class="main-content">
+			<?php include "site-header.php"; ?>
+			<div class="center-container-wide">
+				<h2>Login</h2>
+				<form action="login.php" method="POST">
+					<input type="text" name="username" placeholder="Username" required>
+					<input type="password" name="password" placeholder="Password" required>
+					<button type="submit">Login</button>
+				</form>
+				<a href="register.php" class="anchor-button">I would like to register</a>
+			</div>
+			<?php
+				if(isset($regSuccess)) {
+					echo "<div class=\"center-container-wide\">";
+					echo "<h3>Registration successful</h3>";
+					echo "</div>";
+				}
+				if(isset($loginError)) {
+					echo "<div class=\"center-container-wide\">";
+					echo "<h3 class=\"error\">$loginError</h3>";
+					echo "</div>";
+				}
+			?>
 		</div>
-		<?php
-			if(isset($regSuccess)) {
-				echo "<div class=\"center-container\">";
-				echo "<h2>Registration successful</h2>";
-				echo "</div>";
-			}
-			if(isset($loginError)) {
-				echo "<div class=\"center-container\">";
-				echo "<h2 class=\"error\">$loginError</h2>";
-				echo "</div>";
-			}
-		?>
 	</body>
 </html>

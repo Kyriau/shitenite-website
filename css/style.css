@@ -1,4 +1,5 @@
 :root {
+	
 	--color-dark-blue: #003154;
 	--color-light-blue: #1064A1;
 	--color-red: #F00000;
@@ -6,19 +7,49 @@
 	--color-yellow: #FFC819;
 	--color-off-white: #FFFFF0;
 	--color-off-black: #1B1B1B;
+	
 }
 
 body {
 	
-	background-color: var(--color-dark-blue);
-	color: var(--color-off-white);
-	font-family: "Comic Sans MS", Verdana, sans-serif;
-	
 	display: flex;
 	flex-direction: column;
+	justify-content: center safe;
+	align-items: center;
+	
+	background-color: var(--color-dark-blue);
+	font-family: "Comic Sans MS", Verdana, sans-serif;
+	
+}
+
+div.main-content {
+	
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	
+	width: 42.2rem;
+	
+}
+
+div.center-container-wide {
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	
+	border: 0.15rem solid var(--color-off-black);
+	border-radius: 0.6rem;
+	
+	background-color: var(--color-light-blue);
+	
+	margin: 0.2rem;
+	padding: 0.2rem;
+	
+	width: 41.1rem;
 	
 }
 
@@ -39,4 +70,101 @@ div.center-container {
 	
 	width: 20rem;
 	
+}
+
+h1 {
+	
+	margin: 0.2rem;
+	text-align: center;
+	
+	font-size: 3rem;
+	color: var(--color-yellow);
+	text-shadow: 0.2rem 0.2rem var(--color-off-black);
+	
+}
+
+h2 {
+	
+	margin: 0.2rem;
+	text-align: center;
+	
+	font-size: 2rem;
+	color: var(--color-yellow);
+	text-shadow: 0.2rem 0.2rem var(--color-off-black);
+	
+}
+
+h3 {
+	
+	margin: 0.2rem;
+	text-align: center;
+	
+	font-size: 1rem;
+	color: var(--color-off-white);
+	text-shadow: 0.1rem 0.1rem var(--color-off-black);
+	
+}
+
+form {
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+input {
+	
+	margin: 0.2rem;
+	text-align: center;
+	
+	background-color: var(--color-off-white);
+	width: 16rem;
+	color: var(--color-off-black);
+	
+	border: 0.15rem solid var(--color-off-black);
+	border-radius: 0.6rem;
+	
+}
+
+button, a.anchor-button {
+	
+	margin: 0.2rem;
+	text-align: center;
+	
+	color: var(--color-off-black);
+	border: 0.15rem solid var(--color-off-black);
+	border-radius: 0.6rem;
+	
+	background-color: var(--color-yellow);
+	padding: 0 0.2rem 0 0.2rem;
+	cursor: pointer;
+	
+}
+
+button.has-vote {
+	
+	background-color: var(--color-dark-red);
+	color: var(--color-off-white);
+	
+}
+
+img.movie-poster {
+	
+	border: 0.15rem solid var(--color-off-black);
+	border-radius: 0.6rem;
+	
+}
+
+a:visited {
+	color: inherit;
+}
+
+:invalid {
+	box-shadow: none;
+}
+
+.error {
+	color: var(--color-red);
 }
