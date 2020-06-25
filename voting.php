@@ -76,7 +76,7 @@
 			}
 			
 			function submitVotes() {
-				
+				var xhttp = new XMLHttpRequest();
 			}
 			
 		</script>

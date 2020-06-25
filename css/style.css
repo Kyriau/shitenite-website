@@ -28,7 +28,7 @@ div.main-content {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	
 	width: 42.2rem;
 	
@@ -125,6 +125,12 @@ input {
 	
 	border: 0.15rem solid var(--color-off-black);
 	border-radius: 0.6rem;
+	
+}
+
+input.wide-text {
+	
+	width: 32rem;
 	
 }
 
