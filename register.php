@@ -9,14 +9,14 @@
 	
 	if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['regkey'])) {
 		
-		if(register_user()) {
+		if(registerUser()) {
 			header("Location: login.php?registered=1");
 			die();
 		}
 		
 	}
 	
-	function register_user() {
+	function registerUser() {
 		
 		global $regError;
 		

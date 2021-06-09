@@ -7,6 +7,27 @@
 		die();
 	}
 	
+	if(isset($_POST['imdbUrl'])) {
+		
+		$nominationSuccess = nominateMovie();
+		
+	}
+	
+	function nominateMovie() {
+		
+		$url = $_POST['imdbUrl'];
+		
+		$imdbPage = file_get_contents($url);
+		$start = strpos($imdbPage, "<div class=\"poster\">");
+		$end = strpos($imdbPage, "</div>", $start);
+		$info = substr($imdbPage, $start, $end - $start);
+		
+		preg_replace("[^a-zA-Z]", "", $name);
+		
+		return true;
+		
+	}
+	
 	$movies = queryAllMovies();
 	
 	function echoMovieInfo($movie) {
