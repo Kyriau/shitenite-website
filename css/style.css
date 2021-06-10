@@ -75,6 +75,7 @@ div.center-container {
 h1 {
 	
 	margin: 0.2rem;
+	padding: 0rem 0.4rem;
 	text-align: center;
 	
 	font-size: 3rem;
@@ -86,6 +87,7 @@ h1 {
 h2 {
 	
 	margin: 0.2rem;
+	padding: 0rem 0.4rem;
 	text-align: center;
 	
 	font-size: 2rem;
@@ -97,7 +99,8 @@ h2 {
 h3 {
 	
 	margin: 0.2rem;
-	text-align: center;
+	padding: 0rem 0.4rem;
+	text-align: justify;
 	
 	font-size: 1rem;
 	color: var(--color-off-white);
